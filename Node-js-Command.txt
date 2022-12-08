@@ -1,0 +1,18 @@
+
+npm i colors    <-- colors Package install command
+
+npm init -y   <-- yah command Package.json File Show karta hai
+
+npm install    <-- node_modules Folder install command & Show Folder
+
+npm i nodemon -g    <-- nodemon Package install command   (System Main Ek Bar Globally install Karne ke baad Koi bhi Porject Mein Use Kar sakte hai)
+
+npm install express  <-- express.js Package install command
+
+npm i mongoose    <-- mongoose Package install command
+
+npm i mongodb     <-- mongodb Package install command
+
+nodemon     <-- Yah command Se Server Start & Run Hota Hai
+
+notemon./FileName.js   <-- Yah command Se Server Start & Run Hota Hai  (Yeh Hai Dusra Tarika)
