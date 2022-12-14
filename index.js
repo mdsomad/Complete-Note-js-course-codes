@@ -1,62 +1,27 @@
 
 const express = require('express');
-require('./config');
 const Userdata = require('./userdatas');
+require('./config');
 
 const app = express()
 
 app.use(express.json());
 
 
+app.get('/search/:key',async(req,resp)=>{
+  console.log(req.params.key)
+  let data = await Userdata.find(
+    {
+     "$or":[
+       {"Name":{$regex:req.params.key}},
+       {"UserName":{$regex:req.params.key}},
+     ]
+    }
+  )
 
-
-
-app.post('/create',async(req,resp)=>{
-  let data = Userdata(req.body);
-  let result = await data.save();
-  resp.send(result);
-})
-
-
-
-
-
-
-
-
-app.get('/get',async(req,resp)=>{
-  let data = await Userdata.find();
-  resp.send(data);
-});
-
-
-
-
-
-
-
-
-app.delete("/delete:_id",async(req,resp)=>{
-   let data = await Userdata.deleteOne(req.params);
+  
    resp.send(data);
-});
 
-
-
-
-
-
-
-
-app.put("/update/:_id",async(req,resp)=>{
-    let data = await Userdata.updateOne(
-      req.params,
-      {
-         $set:req.body
-      }
-    );
-
-    resp.send(data);
 
 })
 
