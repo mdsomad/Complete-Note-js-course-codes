@@ -39,27 +39,7 @@ app.post('/post',async(req,resp)=>{       // <-- Yah Hai Mongodb Main Data Post 
 
 
 
-app.put('/Update:Name',async(req,resp)=>{     // <-- Yah Hai Mongodb Main Data Update Karne ka Tarika
-  let update = await database();
-  let result = await update.updateOne(
-   {Name:req.params.Name},               // Send Url Name
-   {
-      $set:req.body
-   }
-  );
-  resp.send(result);
-});
 
-
-app.delete("/delete:id",async(req , resp)=>{     // <-- Yah Hai Mongodb Main Data delete Karne ka Tarika
-   let data = await database();
-   let result = await data.deleteOne(
-      {_id:new mongodb.ObjectId(req.params.id)}
-  );
-  
-  resp.send(result);
-
-})
 
 
 app.listen(3000);   // <-- This PORT

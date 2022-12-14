@@ -16,3 +16,5 @@ npm i mongodb     <-- mongodb Package install command
 nodemon     <-- Yah command Se Server Start & Run Hota Hai
 
 notemon./FileName.js   <-- Yah command Se Server Start & Run Hota Hai  (Yeh Hai Dusra Tarika)
+
+npm i multer   <-- File Upload Package

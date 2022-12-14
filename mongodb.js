@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 const url = 'mongodb://localhost:27017';
+// const url = 'mongodb+srv://mdsomad:SOMAD123@#@cluster0.e60xomr.mongodb.net/Cluster0?retryWrites=true&w=majority';
 
 const client = new MongoClient(url);
 
