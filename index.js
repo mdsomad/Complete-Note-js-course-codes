@@ -1,36 +1,16 @@
-const express = require('express');
-const multer = require('multer');       // Multer Package Use file upload
+const os = require('os')
 
-const app = express();
+console.log(os.arch())     // x64 bit hai ya x32 bit Find
 
-app.use(express.json())
+console.log(os.freemem()/(1024*1024*1024))    // Free Ran Find  (1024*1024*1024) Answer --> GB Mina daga       (1024*1024) Answer --> MB Mina daga
 
+console.log(os.totalmem()/(1024*1024*1024))    // Total Ran Find 
 
+console.log(os.hostname())    
 
-const uploadd = multer({
+console.log(os.platform())    // platform Find
 
-    storage: multer.diskStorage({
-        destination:function(req,file,cd){
-            cd(null,"uploads")
-        },
-        filename:function(req,file,cd){
-            cd(null,file.fieldname+".jpg");
-        }
-        
-    })
-}).single("user_file")
-
-
-
-app.post('/upload',uploadd,(req,resp)=>{                           // postman file send Body  form-data  key name this --> user_file
-    resp.send("File Uplaod");
-})
-
-
-
-app.listen(7000);
-
-
+console.log(os.userInfo())    // User detels
 
 
 
