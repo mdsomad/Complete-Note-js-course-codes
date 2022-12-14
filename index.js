@@ -1,26 +1,75 @@
-const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/practice-set');
+const express = require('express');
+require('./config');
+const Userdata = require('./userdatas');
 
-const user = mongoose.Schema({
-    Name:String,
-    Email:String
+const app = express()
+
+app.use(express.json());
+
+
+
+
+
+app.post('/create',async(req,resp)=>{
+  let data = Userdata(req.body);
+  let result = await data.save();
+  resp.send(result);
+})
+
+
+
+
+
+
+
+
+app.get('/get',async(req,resp)=>{
+  let data = await Userdata.find();
+  resp.send(data);
 });
 
 
 
-const main = async(req,resp)=>{
-    const User = mongoose.model("userdatas",user);
-    let data = new User({
-        Name:"Mongodb",
-        Email:"Mongodb@gile.com"
-    });
-    const result = await data.save();
-    console.log(result);
-}
 
 
-main()
+
+
+
+app.delete("/delete:_id",async(req,resp)=>{
+   let data = await Userdata.deleteOne(req.params);
+   resp.send(data);
+});
+
+
+
+
+
+
+
+
+app.put("/update/:_id",async(req,resp)=>{
+    let data = await Userdata.updateOne(
+      req.params,
+      {
+         $set:req.body
+      }
+    );
+
+    resp.send(data);
+
+})
+
+
+
+
+
+app.listen(7000);
+
+
+
+
+
 
 
 
