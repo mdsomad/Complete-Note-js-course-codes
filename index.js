@@ -1,17 +1,32 @@
-const os = require('os')
+const express = require('express');
+const EventEmitter = require('events');
+const app = express();
+const event = new EventEmitter()
 
-console.log(os.arch())     // x64 bit hai ya x32 bit Find
+let count = 0;
 
-console.log(os.freemem()/(1024*1024*1024))    // Free Ran Find  (1024*1024*1024) Answer --> GB Mina daga       (1024*1024) Answer --> MB Mina daga
+event.on('countAPI',()=>{                              // isk kaam hai Kitna bar request  Aaya hai Find kar sakte hain
+    count++
+    console.log("Event call",count)
+})
 
-console.log(os.totalmem()/(1024*1024*1024))    // Total Ran Find 
 
-console.log(os.hostname())    
+app.get('/',(req,resp)=>{
+    resp.send("Api called");
+    event.emit('countAPI');
+})
 
-console.log(os.platform())    // platform Find
+app.get('/scarch',(req,resp)=>{
+    resp.send("scarch called");
+    event.emit('countAPI');
+})
 
-console.log(os.userInfo())    // User detels
+app.get('/update',(req,resp)=>{
+    resp.send("update called");
+    event.emit('countAPI');
+})
 
+app.listen(7000);
 
 
 
